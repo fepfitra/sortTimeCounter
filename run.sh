@@ -47,6 +47,7 @@ do
       echo "Running $SORT $NUM_ATTEMPTS times with array length $ARRLEN"
       for ((i=1; i<=$NUM_ATTEMPTS; i++)); do
         output=$(./"$SORT" $ARRLEN)
+        echo "Attempt $i: $output microseconds"
         echo "$SORT,$ARRLEN,$i,$output" >> "$OUTPUT_FILE"
       done
     done
