@@ -50,6 +50,7 @@ do
         echo "Attempt $i: $output microseconds"
         echo "$SORT,$ARRLEN,$i,$output" >> "$OUTPUT_FILE"
       done
+      echo ""
     done
   else
     echo "Executable '$SORT' not found. Compilation may have failed for $SORT."
