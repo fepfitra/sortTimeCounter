@@ -1,13 +1,16 @@
 #!/bin/bash
 
-# Default number of attempts
 NUM_ATTEMPTS=1
+OUTPUT_FILE="output.csv"
 
-# Check if a -r option is provided and set NUM_ATTEMPTS accordingly
 while [[ $# -gt 0 ]]; do
   case "$1" in
     -r|--attempts)
       NUM_ATTEMPTS="$2"
+      shift 2
+      ;;
+    -o|--output)
+      OUTPUT_FILE="$2"
       shift 2
       ;;
     *)
@@ -15,6 +18,8 @@ while [[ $# -gt 0 ]]; do
       ;;
   esac
 done
+
+echo "Sorting Algorithm,Array Length,Attempt,Time (microseconds)" > "$OUTPUT_FILE"
 
 SORTS=('bubble' 'selection' 'insertion' 'quick')
 ARRLENS=(100 200 400 800)
@@ -42,9 +47,8 @@ do
       echo "Running $SORT $NUM_ATTEMPTS times with array length $ARRLEN"
       for ((i=1; i<=$NUM_ATTEMPTS; i++)); do
         output=$(./"$SORT" $ARRLEN)
-        echo "Attempt $i: $output microseconds"
+        echo "$SORT,$ARRLEN,$i,$output" >> "$OUTPUT_FILE"
       done
-      echo -e "\n"
     done
   else
     echo "Executable '$SORT' not found. Compilation may have failed for $SORT."
