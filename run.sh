@@ -22,7 +22,7 @@ done
 echo "Sorting Algorithm,Array Length,Attempt,Time (microseconds)" > "$OUTPUT_FILE"
 
 SORTS=('bubble' 'selection' 'insertion' 'quick')
-ARRLENS=(100 200 400 800)
+ARRLENS=(10000 20000 30000 40000 50000 60000 70000 80000 90000 100000)
 
 for SORT in "${SORTS[@]}"
 do
